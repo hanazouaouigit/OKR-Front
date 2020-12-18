@@ -30,7 +30,7 @@ class AppSidebar extends Component {
             backgroundImage,
             backgroundImageOpacity,
         } = this.props;
-
+        return null;
         return (
             <Fragment>
                 <div className="sidebar-mobile-overlay" onClick={this.toggleMobileSidebar}/>

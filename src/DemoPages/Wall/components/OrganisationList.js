@@ -9,10 +9,18 @@ const UserAvatar = ({ fullName }) => {
   return (
     <div
       className="bg-white d-flex justify-content-center align-items-center"
-      style={{ borderRadius: "20px", height: "40px", width: "40px" }}
+      style={{
+        borderRadius: "20px",
+        height: "40px",
+        width: "40px",
+        border: "1px solid #000",
+        backgroundColor: "#737373 !important"
+      }}
     >
-      <span className="h6">{first[0]}</span>{" "}
-      <span className="h6">{last[0]}</span>
+      <div>
+        <span className="h6">{first[0]}</span>{" "}
+        <span className="h6">{last[0]}</span>
+      </div>
     </div>
   );
 };
@@ -20,19 +28,28 @@ const UsersWallItem = ({ fullName }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
-      <ListItem onClick={() => setIsOpen(!isOpen)} className="d-flex align-items-center">
-        <UserAvatar fullName={fullName} /> <span className="ml-1 font-bold">{fullName}</span>
+      <ListItem
+        onClick={() => setIsOpen(!isOpen)}
+        className="d-flex align-items-center mt-1"
+        style={{
+          backgroundColor:"#f1f1f1",
+          borderRadius:"7px"
+        }}
+      >
+        <UserAvatar fullName={fullName} />{" "}
+        <span className="ml-1 font-bold" style={{ fontSize: "13px" }}>
+          {fullName}
+        </span>
       </ListItem>
     </>
   );
 };
-const ProjectItem = ({ id,name, usersWall,myRole }) => {
-    const {handleSelectedProject} =usePostContext();
+const ProjectItem = ({ id, name, usersWall, myRole }) => {
+  const { handleSelectedProject } = usePostContext();
   const [isOpen, setIsOpen] = React.useState(false);
-  function handleClickProject(){
-      handleSelectedProject({id,myRole})
+  function handleClickProject() {
+    handleSelectedProject({ id, myRole });
     setIsOpen(!isOpen);
-
   }
   return (
     <>
@@ -50,7 +67,7 @@ const ProjectItem = ({ id,name, usersWall,myRole }) => {
       </ListItem>
       <Collapse isOpen={isOpen}>
         <div className="pl-1">
-          {usersWall?.map((user) => (
+          {usersWall?.map(user => (
             <UsersWallItem {...user} />
           ))}
         </div>
@@ -69,16 +86,19 @@ const LevelItem = ({ name, projects }) => {
       >
         <span>{name}</span>
 
-        {!isOpen ? (
-          <ChevronRight color="black" size={15} />
-        ) : (
-          <ChevronDown color="black" size={15} />
-        )}
+        <div>
+          <div className="badge badge-success">{projects?.length}</div>
+          {!isOpen ? (
+            <ChevronRight color="black" size={15} />
+          ) : (
+            <ChevronDown color="black" size={15} />
+          )}
+        </div>
       </ListItem>
       <Collapse isOpen={isOpen}>
         <div className="pl-1">
           <div className="no-border p-1">
-            {projects?.map((level) => (
+            {projects?.map(level => (
               <ProjectItem {...level} />
             ))}
           </div>
@@ -97,17 +117,18 @@ const OrganisationItem = ({ name, levels }) => {
         className="d-flex align-items-center justify-content-between"
       >
         <span>{name}</span>
-
-        {!isOpen ? (
-          <ChevronRight color="black" size={15} />
-        ) : (
-          <ChevronDown color="black" size={15} />
-        )}
+        <div>
+          {!isOpen ? (
+            <ChevronRight color="black" size={15} />
+          ) : (
+            <ChevronDown color="black" size={15} />
+          )}
+        </div>
       </ListItem>
       <Collapse isOpen={isOpen}>
         <div className="pl-1">
           <div className="no-border p-1">
-            {levels?.map((level) => (
+            {levels?.map(level => (
               <LevelItem {...level} />
             ))}
           </div>
@@ -118,8 +139,8 @@ const OrganisationItem = ({ name, levels }) => {
 };
 export default function OrganisationList({ data }) {
   return (
-    <div>
-      {data?.map((org) => (
+    <div className="bg-white rounded jr-card">
+      {data?.map(org => (
         <OrganisationItem {...org} />
       ))}
     </div>
