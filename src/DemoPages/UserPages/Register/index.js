@@ -8,6 +8,7 @@ import EmailField from "../../../Utils/EmailField";
 import PasswordField from "../../../Utils/PasswordField";
 
 import "../../../Utils/App.scss";
+import { Link } from "react-router-dom";
  
 const Register = (props) => {
   const [state, setState] = React.useState({
@@ -251,13 +252,12 @@ const isDisabled = state.errorCpassword || !valide;
                   <div className="mt-4 d-flex align-items-center">
                     <h5 className="mb-0">
                       Already have an account?{" "}
-                      <a
-                        href="https://colorlib.com/"
-                        onClick={(e) => e.preventDefault()}
+                      <Link
+                        to="/pages/login"
                         className="text-primary"
                       >
                         Sign in
-                      </a>
+                      </Link>
                     </h5>
                     <div className="ml-auto">
                       <Button

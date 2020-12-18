@@ -58,6 +58,7 @@ const QuestionItem = ({ item }) => {
       rating
     });
   }
+
   return (
     <Card className="main-card mb-3">
       <CardBody>
@@ -210,9 +211,9 @@ const WallContainer = ({ match }) => {
     </Fragment>
   );
 };
-const Wall = () => {
+const Wall = (props) => {
   return (
-    <PostProvider>
+    <PostProvider {...props}>
       <WallContainer />
     </PostProvider>
   );

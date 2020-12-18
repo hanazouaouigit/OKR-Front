@@ -8,6 +8,7 @@ import bg3 from '../../../assets/utils/images/originals/citynights.jpg';
 
 import {Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { login } from "api/auth";
+import { Link } from "react-router-dom";
 
 const  Login =(props)=>{
   const [state,setState] =React.useState({
@@ -105,7 +106,7 @@ const  Login =(props)=>{
                                 </h4>
                                 <h6 className="mt-3">
                                     No account?{' '}
-                                    <a href="https://colorlib.com/" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>
+                                    <Link href="https://colorlib.com/" to="/pages/register" className="text-primary">Sign up now</Link>
                                 </h6>
                                 <Row className="divider"/>
                                 <div>

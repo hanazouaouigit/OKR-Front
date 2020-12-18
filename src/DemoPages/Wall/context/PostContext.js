@@ -1,3 +1,4 @@
+import { Token } from "graphql";
 import React from "react";
 import { postList } from "../data";
 import { useQueryOrganisation, useQueryPosts } from "../post.hooks";
@@ -35,6 +36,11 @@ const PostProvider = (props) => {
         }
       }
   },[organisations])
+  React.useEffect(()=>{
+     if(!localStorage.getItem("token")){
+       props.history.push("/pages/login")
+     }
+  },[])
   return (
     <PostContext.Provider
       value={{
