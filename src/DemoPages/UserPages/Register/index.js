@@ -19,12 +19,13 @@ const Register = (props) => {
     password: "",
     confirmPassword: "",
   });
-  function handleChangeInput({ target: { name, value , field} }) {
+  function handleChangeInput({ target: { name, value } }) {
+    console.log({name,value})
     setState({ ...state, [name]: value });
-    if (field === "confirmPassword" || field === "password")
-      this.handlePasswordChanged(state.value);
-    if (state.errors.length === 0) this.setState({ [field]: state.value });
-    else this.setState({ [field]: false });
+  //   if (field === "confirmPassword" || field === "password")
+  //     this.handlePasswordChanged(state.value);
+  //   if (state.errors.length === 0) this.setState({ [field]: state.value });
+  //   else this.setState({ [field]: false });
   }
 
   const valide =
@@ -51,7 +52,8 @@ const isDisabled = state.errorCpassword || !valide;
   function handleSubmit(e) {
     e.preventDefault();
     register(state).then((res)=>{
-        props.history.push("/pages/login")
+      console.log({res});
+       // props.history.push("/pages/login")
     });;
   }
 
@@ -79,7 +81,7 @@ const isDisabled = state.errorCpassword || !valide;
                 <Form onSubmit={handleSubmit}>
                   <Row form>
                   <Col md={6}>
-                      {/* <FormGroup> <Label for="exampleLastName">
+                   <FormGroup> <Label for="exampleLastName">
                           <span className="text-danger">*</span> First name
                         </Label>
                         <Input
@@ -91,21 +93,22 @@ const isDisabled = state.errorCpassword || !valide;
                         />
 
                      
-                      </FormGroup> */}
-                      <FormGroup>
+                      </FormGroup>
+                      {/* <FormGroup>
                           <FormField
                             type="text"
                             fieldId="firstName"
                             label="First name"
+                            name="firstName"
                             placeholder="First name here..."
-                            /*validator={validateUserName}*/
-                            onChange={handleChangeInput}
+                           
+                            onStateChanged={handleChangeInput}
                             required
-                          />
-                        </FormGroup>
+                        </FormGroup> 
+                        */}
                     </Col>
                     <Col md={6}>
-                      {/* <FormGroup>
+                       <FormGroup>
                         <Label for="exampleLastName">
                           <span className="text-danger">*</span> Last name
                         </Label>
@@ -116,8 +119,8 @@ const isDisabled = state.errorCpassword || !valide;
                           placeholder="Last name here..."
                           onChange={handleChangeInput}
                         />
-                      </FormGroup> */}
-                      <FormGroup>
+                      </FormGroup> 
+                      {/* <FormGroup>
                           <FormField
                             type="text"
                             fieldId="lastName"
@@ -128,11 +131,11 @@ const isDisabled = state.errorCpassword || !valide;
                             onChange={handleChangeInput}
                             required
                           />
-                        </FormGroup>
+                        </FormGroup> */}
                     </Col>
                     
                     <Col md={6}>
-                      {/* <FormGroup>
+                       <FormGroup>
                         <Label for="exampleEmail">
                           <span className="text-danger">*</span> Email
                         </Label>
@@ -143,21 +146,21 @@ const isDisabled = state.errorCpassword || !valide;
                           placeholder="Email here..."
                           onChange={handleChangeInput}
                         />
-                      </FormGroup> */}
-                       <FormGroup>
+                      </FormGroup> 
+                       {/* <FormGroup>
                           <FormField
                             type="text"
                             fieldId="userName"
                             label="User name"
                             placeholder="User name here..."
-                            /*validator={validateUserName}*/
+                            
                            onChange= {handleChangeInput}
                             required
                           />
-                        </FormGroup>
+                        </FormGroup> */}
                     </Col>
                     <Col md={6}>
-                      {/* <FormGroup>
+                       <FormGroup>
                         <Label for="exampleUserName">User Name</Label>
                         <Input
                           type="text"
@@ -166,8 +169,8 @@ const isDisabled = state.errorCpassword || !valide;
                           placeholder="Username here..."
                           onChange={handleChangeInput}
                         />
-                      </FormGroup> */}
-                       <FormGroup>
+                      </FormGroup> 
+                       {/* <FormGroup>
                           <EmailField
                             type="email"
                             fieldId="email"
@@ -176,10 +179,10 @@ const isDisabled = state.errorCpassword || !valide;
                             onChange={handleChangeInput}
                             required
                           />
-                        </FormGroup>
+                        </FormGroup> */}
                     </Col>
                     <Col md={6}>
-                      {/* <FormGroup>
+                     <FormGroup>
                         <Label for="examplePassword">
                           <span className="text-danger">*</span> Password
                         </Label>
@@ -190,24 +193,11 @@ const isDisabled = state.errorCpassword || !valide;
                           placeholder="Password here..."
                           onChange={handleChangeInput}
                         />
-                      </FormGroup> */}
-                       <FormGroup>
-                          {/** Render the password field component using thresholdLength of 7 and minStrength of 3 **/}
-                          <PasswordField
-                            type="password"
-                            fieldId="password"
-                            label="Password"
-                            placeholder="Enter Password"
-                            // onChange={this.handleChangePassword}
-                            onChange={handleChangeInput}
-                            thresholdLength={7}
-                            minStrength={3}
-                            required
-                          />
-                        </FormGroup>
+                      </FormGroup> 
+                       
                     </Col>
                     <Col md={6}>
-                      {/* <FormGroup>
+                       <FormGroup>
                         <Label for="examplePasswordRep">
                           <span className="text-danger">*</span> Repeat Password
                         </Label>
@@ -218,22 +208,8 @@ const isDisabled = state.errorCpassword || !valide;
                           placeholder="Repeat Password here..."
                           onChange={handleChangeInput}
                         />
-                      </FormGroup> */}
-                       <FormGroup>
-                          {/** Render the password field component using thresholdLength of 7 and minStrength of 3 **/}
-                          <PasswordField
-                            type="password"
-                            fieldId="confirmPassword"
-                            label="Confirm Password"
-                            placeholder="Confirm Password here..."
-                            onChange={handleChangeInput}
-                             error={state.errorCpassword}
-                            validator={state.comparePassword}
-                            thresholdLength={7}
-                            minStrength={3}
-                            required
-                          />
-                        </FormGroup>
+                      </FormGroup> 
+                       
                     </Col>
                   </Row>
                   <FormGroup className="mt-3" check>
@@ -264,6 +240,7 @@ const isDisabled = state.errorCpassword || !valide;
                         color="primary"
                         className="btn-wide btn-pill btn-shadow btn-hover-shine"
                         size="lg"
+
                       >
                         Create Account
                       </Button>

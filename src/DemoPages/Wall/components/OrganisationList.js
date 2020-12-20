@@ -4,27 +4,25 @@ import { ChevronDown, Divide } from "react-feather";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
 import { ChevronRight } from "react-feather";
 import { usePostContext } from "../context/PostContext";
-const UserAvatar = ({ fullName }) => {
+const UserAvatar = ({ fullName ,photoUrl}) => {
   const [first, last] = fullName.split(" ");
   return (
     <div
       className="bg-white d-flex justify-content-center align-items-center"
-      style={{
+     
+    >
+      <div>
+      <img src={photoUrl}  style={{
         borderRadius: "20px",
         height: "40px",
         width: "40px",
-        border: "1px solid #000",
-        backgroundColor: "#737373 !important"
-      }}
-    >
-      <div>
-        <span className="h6">{first[0]}</span>{" "}
-        <span className="h6">{last[0]}</span>
+      
+      }}/>
       </div>
     </div>
   );
 };
-const UsersWallItem = ({ fullName }) => {
+const UsersWallItem = ({ fullName,photoUrl }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
@@ -36,7 +34,7 @@ const UsersWallItem = ({ fullName }) => {
           borderRadius:"7px"
         }}
       >
-        <UserAvatar fullName={fullName} />{" "}
+        <UserAvatar fullName={fullName} photoUrl={photoUrl}/>{" "}
         <span className="ml-1 font-bold" style={{ fontSize: "13px" }}>
           {fullName}
         </span>

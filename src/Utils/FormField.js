@@ -38,7 +38,7 @@ class FormField extends Component {
 
   render() {
     const { value, dirty, errors } = this.state;
-    const { type, label, fieldId, placeholder, children } = this.props;
+    const { type, label, fieldId, placeholder, children ,name} = this.props;
 
     const hasErrors = errors.length > 0;
     const controlClass = ['form-control', dirty ? hasErrors ? 'is-invalid' : 'is-valid' : '' ].join(' ').trim();
@@ -53,7 +53,7 @@ class FormField extends Component {
           </div>
           {/** Render the children nodes passed to component **/}
           {children}
-          <input type={type} className={controlClass} id={fieldId} placeholder={placeholder} value={value} onChange={this.hasChanged} />
+          <input type={type} name={name} className={controlClass} id={fieldId} placeholder={placeholder} value={value} onChange={this.hasChanged} />
         </div>
       </Fragment>
     );

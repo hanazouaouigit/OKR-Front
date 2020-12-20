@@ -14,6 +14,7 @@ const GET_ORGANISATIONS = gql`
           myRole
           usersWall {
             id
+            photoUrl
             fullName
           }
         }
@@ -35,6 +36,7 @@ const GET_POST = gql`
         lastName
         firstName
         fullName
+        photoUrl
         profile {
           id
         }
