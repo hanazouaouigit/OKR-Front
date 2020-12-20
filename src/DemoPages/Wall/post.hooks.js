@@ -42,6 +42,7 @@ const GET_POST = gql`
       comments {
         id
         body
+        isMyComment
         createdAt
         createdBy {
           id
@@ -75,6 +76,7 @@ const ADD_POST = gql`
         id
         body
         createdAt
+        isMyComment
         createdBy {
           id
           lastName

@@ -65,7 +65,7 @@ const CommentBox = (props) => {
     return tab;
   }
 
-  const {createdBy:user, body,likes, createdAt, comment} = props?.commentData;
+  const {createdBy:user, body,likes, createdAt, comment,isMyComment} = props?.commentData;
   return (
     <div className="media flex-nowrap jr-wall-user-info mb-3">
       <Modal isOpen={modalDelete} onClosed={()=>setModalDelete(false)}>
@@ -97,10 +97,10 @@ const CommentBox = (props) => {
        
         <div className="flex-row">
         <div className="d-flex ">
-          {myRole !=="OBSERVER" && <Button >
+          {(isMyComment) && <Button >
             <Edit size={15} color="gray" onClick={()=>setModalEdit(!modalEdit)} />
           </Button>}
-          {myRole !=="OBSERVER" && <Button>
+          {(myRole =="MANAGER" || isMyComment) && <Button>
             <Trash size={15} color="gray" onClick={()=>setModalDelete(!modalDelete)} />
           </Button>}
         </div>

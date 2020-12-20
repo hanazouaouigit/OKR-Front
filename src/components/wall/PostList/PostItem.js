@@ -96,13 +96,11 @@ const PostItem = (props) => {
             <DisplayDate date={createdAt} />
           </div>
 
-          <Button color="white">
-            <Icons.Share2 size={15} color="gray" />
-          </Button>
-         {isMyPost && myRole !=="OBSERVER" && <Button color="white">
+         
+         {(isMyPost ===true) && <Button color="white">
             <Icons.Edit size={15} color="gray" onClick={()=>setModalEdit(true)} />
           </Button>}
-          {isMyPost && myRole !=="OBSERVER" && <Button color="white">
+          {(myRole ==="MANAGER" || isMyPost ===true)&& <Button color="white">
             <Icons.Trash size={15} color="gray" onClick={()=>setModalDelete(!modalDelete)}/>
           </Button>}
         </div>
@@ -127,19 +125,7 @@ const PostItem = (props) => {
             {/* <span
               className="d-inline-flex align-middle">{viewCount > 0 ? viewCount + ' Views' : 'Views'}</span> */}
           </p>
-          <p className="jr-fs-sm pointer mr-3 text-grey">
-            {isLiked() === true ? (
-              <i
-                className="zmdi zmdi-favorite jr-fs-lg mr-2 d-inline-flex align-middle"
-                style={{ color: "blue" }}
-              />
-            ) : (
-              <i className="zmdi zmdi-favorite-outline jr-fs-lg mr-2 d-inline-flex align-middle"  />
-            )}
-            <span className="d-inline-flex vertical-align-middle" onClick={handleLike}>
-              {likes?.length > 0 ? likes.length + " Likes" : "Likes"}
-            </span>
-          </p>
+         
           <p className="jr-fs-sm pointer mr-3 text-grey">
             <i className="zmdi zmdi-comment-more jr-fs-lg mr-2 d-inline-flex align-middle" />
             <span className="d-inline-flex align-middle">
